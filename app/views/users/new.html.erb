@@ -1,0 +1,28 @@
+# <form action="/users" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="bt7vk8HujD23-NPujCzUxoEm9iHeSWx9xsgbIaeMJvRBcf8Gi25IYbmW1MhIx2MYO9P_pWLY-UszXNhE-XoskQ">
+#     <label for="user_username">Name:</label>
+#     <input type="text" name="user[username]" id="user_username">
+#     <label for="user_email">Email:</label>
+#     <input type="email" name="user[email]" id="user_email">
+#     <label for="user_password">Password:</label>
+#     <input type="text" name="user[password]" id="user_password">
+#     <input type="submit" name="commit" value="Create User" data-disable-with="Create User">
+# </form>  
+
+<%= form_with model: @user do |form| %>
+    <%@user.errors.full_messages_for(:username).each do |m| %>
+        <%= m %>
+    <% end %>
+    <%= form.label :username, "Name:" %>
+    <%= form.text_field :username  %>
+    <%@user.errors.full_messages_for(:email).each do |m| %>
+        <%= m %>
+    <% end %>
+    <%= form.label :email, "Email:" %>
+    <%= form.email_field :email %>
+    <%@user.errors.full_messages_for(:password).each do |m| %>
+        <%= m %>
+    <% end %>
+    <%= form.label :password, "Password:" %>
+    <%= form.text_field :password %>
+    <%= form.submit %>
+<% end %>
